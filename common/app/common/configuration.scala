@@ -483,6 +483,8 @@ class GuardianConfiguration extends Logging {
   }
 
   object targeting {
+    println("----------->")
+    println(configuration.getStringProperty("targeting.campaignsUrl"))
     lazy val campaignsUrl = configuration.getStringProperty("targeting.campaignsUrl")
   }
 
