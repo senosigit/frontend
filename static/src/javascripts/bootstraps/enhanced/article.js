@@ -17,7 +17,7 @@ import { handleCompletion as handleQuizCompletion } from 'common/modules/atoms/q
 import { init as initLiveblogCommon } from 'bootstraps/enhanced/article-liveblog-common';
 import { initTrails } from 'bootstraps/enhanced/trail';
 import { optInEngagementBannerInit } from 'common/modules/identity/global/opt-in-engagement-banner';
-import { init as initCampaign }  from 'journalism/campaigns';
+import { init as initCampaign } from 'journalism/campaigns';
 import ophan from 'ophan/ng';
 
 const modules = {
