@@ -6,3 +6,24 @@ form {
 #crazy-red-form {
     background-color: mediumvioletred;
 }
+
+.campaign--snippet {
+    border-image: repeating-linear-gradient(to bottom, #dcdcdc, #dcdcdc 1px, transparent 1px, transparent 4px) 13;
+    border-top: 13px solid black;
+    border-left: 0;
+    border-right: 0;
+    border-bottom: 0;
+    background: #f1f1f1;
+    position: relative;
+    padding: 0 5px 6px;
+    margin: 16px 0 36px;
+}
+
+.campaign--snippet > summary {
+    outline: none;
+}
+
+.campaign--snippet__header {
+    margin: 0 0 16px;
+    font-weight: bold;
+}

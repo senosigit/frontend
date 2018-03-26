@@ -1,12 +1,26 @@
-<figure>
+<details class="campaign campaign--snippet">
 
-    <details>
-        <summary>
-            <p> HELLO </p>
-        </summary>
-        <form>
+    <summary class="campaign--snippet__header">
+        <p> <%= data.title %></p>
+        <p> <%= data.description %></p>
+        <button class="atom__button atom__button--large atom__button--rounded atom--snippet__handle" aria-hidden="true">
+            <span class="is-on">
+             <svg class="icon icon--plus " width="18px" height="18px" viewBox="0 0 18 18">
+              <path d="M8.2 0h1.6l.4 7.8 7.8.4v1.6l-7.8.4-.4 7.8H8.2l-.4-7.8L0 9.8V8.2l7.8-.4.4-7.8z"></path>
+             </svg>
+                Tell us
+            </span>
+        </button>
+    </summary>
 
-        </form>
-    </details>
+    <form action="/formstack-campaign/submit" method="post" class="campaign--snippet__body">
 
-</figure>
+        <!--<% for(option in feedbackOptions) { %>-->
+
+        <!--<% } %>-->
+
+        <input type="submit" value="Share with the Guardian!!!!">
+    </form>
+
+</details>
+
