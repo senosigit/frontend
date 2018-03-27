@@ -22,6 +22,25 @@
         background: $pillarColor;
     }
 
+    // TODO Exclude this from galleries/immersives/column template
+
+    .content__series-label__link {
+        box-shadow: 0 0 0 3px $kickerColor, 0 0 0 3px $kickerColor;
+        color: #ffffff;
+
+        .label__link-wrapper {
+            background-color: $kickerColor;
+        }
+
+        &:hover {
+            box-shadow: 0 0 0 3px $pillarColor, 0 0 0 3px $pillarColor;
+
+            .label__link-wrapper {
+                background-color: $pillarColor;
+            }
+        }
+    }
+
     .byline,
     .content--media .content__headline,
     .content__section-label__link,
