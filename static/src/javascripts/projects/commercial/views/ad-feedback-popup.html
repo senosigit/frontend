@@ -6,9 +6,12 @@
         To help improve the ad experience on the Guardian, please select from the following:
     </h3>
     <ul>
-        <% for(field in formFields) { %>
-            <label for="name">Name<span></span></label>
-            <input name="name" required="true" type="text">
+        <% for(option in feedbackOptions) { %>
+            <li class="popup__item popup__item--option js-ad-feedback-option" data-slot="<%=slot%>" data-problem="<%=option%>">
+                <button id="<%=slot%>-feedback-<%=option%>" type="button" value="<%=option%>">
+                    <%=feedbackOptions[option]%>
+                </button>
+            </li>
         <% } %>
     </ul>
 </div>
