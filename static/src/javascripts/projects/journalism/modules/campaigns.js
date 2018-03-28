@@ -1,10 +1,10 @@
 // @flow
 import config from 'lib/config';
 
-export function init() {
-    function isCallout(campaign) {
-        return campaign.fields._type === 'callout';
-    }
+export const init = () => {
+    // eslint-disable-next-line
+    const isCallout = campaign => campaign.fields._type === 'callout';
+
     const allCampaigns = config.get('page.campaigns');
     const campaignToShow = allCampaigns.filter(isCallout).pop();
 
@@ -15,4 +15,4 @@ export function init() {
     };
 
     return returnObj;
-}
+};
