@@ -1,10 +1,10 @@
 
 .campaign--snippet {
-    border-top: 1px #d3d3d3 solid;
+    border-top: 1px $garnett-neutral-4 solid;
     background: $garnett-neutral-8;
     position: relative;
     padding: 0 0 6px;
-    margin: 0;
+    margin: 16px 0 36px;
     font-size: 14px;
     line-height: 21px;
 
@@ -19,7 +19,7 @@
 .campaign--snippet > summary {
     outline: none;
     padding: 0;
-    border-top: 1px #d3d3d3 solid;
+    border-top: 1px $garnett-neutral-4 solid;
     list-style: none;
 
     &::-webkit-details-marker {
@@ -30,27 +30,29 @@
         display: flex;
         flex-direction: row;
 
-        > div.heading-logo {
+        > div.campaign--snippet__heading-logo {
             flex: initial;
-            margin-right: 1em;
+            margin-right: 10px;
+
             .speech-bubble {
-                background-color: #e00000;
-                padding: .3em .5em;
+                background-color: $news-garnett-main-1;
+                padding: 6px 10px 10px;
                 color: #ffffff;
+                line-height: 18px;
             }
         }
         > div.heading {
             flex: auto;
+            font-weight: bold;
         }
     }
 }
 
 .campaign--snippet__header {
     margin: 0 0 16px;
-    font-weight: bold;
 }
 
-.campaign--snippet__headline {
+.campaign--snippet__headline, .campaign--snippet__heading-logo {
     font-size: 18px;
     line-height: 22px;
     font-family: 'Guardian Egyptian Web', 'Guardian Text Egyptian Web', Georgia, serif;
@@ -61,19 +63,33 @@
     background: #121212;
     color: #ffffff;
     font-family: 'Guardian Text Sans Web', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif;
-}
-
-.campaign__button--rounded {
-    border-radius: 100em;
-}
-
-.campaign--snippet__handle {
     font-size: 13px;
     position: absolute;
     bottom: 0;
     -webkit-transform: translate(0, 50%);
     transform: translate(0, 50%);
     padding: 0 15px 0 7px;
+    margin-left: 5px;
+    span {
+        display: -webkit-inline-box;
+        display: -ms-inline-flexbox;
+        display: inline-flex;
+        -webkit-box-align: center;
+        align-items: center;
+    }
+    .icon {
+        fill: #ffffff;
+        width: 20px;
+        height: 20px;
+        margin-right: 10px;
+    }
+}
+
+.campaign__button--rounded {
+    border-radius: 100em;
+}
+.campaign__button--large {
+    height: 2.25em;
 }
 
 .campaign__button {
@@ -86,39 +102,12 @@
     margin: 0;
 }
 
-.campaign--snippet__handle {
-    background: #121212;
-    color: #ffffff;
-}
-
-.campaign--snippet__handle span {
-    display: -webkit-inline-box;
-    display: -ms-inline-flexbox;
-    display: inline-flex;
-}
-
-.campaign--snippet__handle {
-    font-family: 'Guardian Text Sans Web', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif;
-}
-
-
-.campaign--snippet__handle .icon {
-    fill: #ffffff;
-    width: 20px;
-    height: 20px;
-    margin-right: 10px;
+.content--pillar-news .campaign--snippet__handle:focus {
+    background-color: $news-garnett-main-1;
 }
 
 svg:not(:root) {
     overflow: hidden;
-}
-
-.campaign--snippet__handle {
-    background: #121212;
-    color: #ffffff;
-}
-.content--pillar-news .campaign--snippet__handle:focus {
-    background-color: #e00000;
 }
 
 .speech-bubble {
@@ -127,12 +116,12 @@ svg:not(:root) {
     &::after {
         content: '';
         width: 14px;
-        height: 14px;
+        height: 12px;
         border-radius: 0 0 14px;
         position: absolute;
-        bottom: -14px;
+        bottom: -12px;
         left: 10px;
-        background: #e00000;
+        background: $news-garnett-main-1;
     }
 }
 
@@ -142,7 +131,7 @@ svg:not(:root) {
     display: flex;
     flex-direction: column;
     padding: 0 .5em 2em;
-    border-top: 1px #d3d3d3 solid;
+    border-top: 1px $garnett-neutral-4 solid;
 
     [type=radio] {
         margin-left: 0;

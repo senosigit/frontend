@@ -11,13 +11,13 @@ const makeCampaign = (anchorNode: HTMLElement): void => {
     }</figure>`;
 
     fastdom.write(() => {
-        anchorNode.insertAdjacentHTML('beforebegin', campaignDiv);
+        anchorNode.insertAdjacentHTML('afterend', campaignDiv);
     });
 };
 
 export const renderCampaign = () => {
-    const endOfArticle = document.querySelector(
-        '.content__article-body .submeta'
-    );
-    if (endOfArticle) makeCampaign(endOfArticle);
+    const fourthParagraph = document.querySelectorAll(
+        '.content__article-body p'
+    )[4];
+    if (fourthParagraph) makeCampaign(fourthParagraph);
 };
