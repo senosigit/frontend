@@ -7,6 +7,11 @@
     margin: 0;
     font-size: 14px;
     line-height: 21px;
+
+    &:not([open]) .is-on,
+    &[open] .is-off {
+        display: none;
+    }
 }
 
 /* SUMMARY */
@@ -15,6 +20,11 @@
     outline: none;
     padding: 0;
     border-top: 1px #d3d3d3 solid;
+    list-style: none;
+
+    &::-webkit-details-marker {
+        display: none;
+    }
 
     .kicker {
         display: flex;
