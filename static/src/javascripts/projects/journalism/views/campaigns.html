@@ -42,9 +42,9 @@
 
                 <% if(field.type === "textarea") { %>
                     <textarea name="<%=field.name%>"
-                    <% if (field.required === "1") { %>
-                    required="true" <% } %>
-                    />s
+                        <% if (field.required === "1") { %>
+                        required="true" <% } %>
+                        />
                     </textarea>
 
                 <% } else if(field.type === "radio" || field.type === "checkbox") { %>

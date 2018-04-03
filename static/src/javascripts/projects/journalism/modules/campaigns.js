@@ -8,8 +8,6 @@ export const init = () => {
 
     const campaignToShow = allCampaigns.filter(isCallout).pop();
 
-    console.log(campaignToShow.fields.formFields);
-
     return {
         title: campaignToShow.fields.callout,
         description: campaignToShow.fields.description,
