@@ -39,20 +39,50 @@
                     <%= field.label %>
                     <span><%= field.description %></span>
                 </label>
-                <% if(field.type !== "textarea") { %>
-                    <input name="<%=field.name%>"
-                       type="<%=field.type%>"
-                    <% if (field.required === "1") { %>
-                    required="true" <% } %>
-                    />
-                <% } %>
+
                 <% if(field.type === "textarea") { %>
                     <textarea name="<%=field.name%>"
                     <% if (field.required === "1") { %>
                     required="true" <% } %>
-                    />
+                    />s
                     </textarea>
 
+                <% } else if(field.type === "radio" || field.type === "checkbox") { %>
+                    <% field.options.forEach(function(option){ %>
+                        <input type="<%=field.name%>"
+                               value="<%=option.value%>"
+                               id="<%=option.label%>"
+                               name="<%=field.name%>"
+                                <% if (field.required === "1") { %>
+                                required="true"
+                                <% } %>
+                               />
+                        <label for="<%=option.label%>">
+                            <%=option.value%>
+                        </label>
+                    <% }) %>
+
+                <% } else if(field.type === "select") { %>
+                    <select name="<%=field.name%>"
+                        <% if (field.required === "1") { %>
+                            required="true"
+                        <% } %>
+                    >
+                        <% field.options.forEach(function(option){ %>
+                        <option value="<%=option.value%>">
+                            <%=option.value%>
+                        </option>
+                        <% }) %>
+
+                    </select>
+
+                <% } else { %>
+                    <input name="<%=field.name%>"
+                       type="<%=field.type%>"
+                        <% if (field.required === "1") { %>
+                            required="true"
+                        <% } %>
+                    />
                 <% } %>
             </div>
         </div>

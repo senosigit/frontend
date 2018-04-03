@@ -133,7 +133,7 @@ svg:not(:root) {
     padding: 0 .5em 2em;
     border-top: 1px $garnett-neutral-4 solid;
 
-    [type=radio] {
+    [type=radio], [type=checkbox] {
         margin-left: 0;
     }
 
@@ -144,7 +144,8 @@ svg:not(:root) {
     &:not(:first-child) {
         margin: 12px 0;
     }
-    &.form_input--radio .form_field {
+    &.form_input--radio .form_field,
+    &.form_input--checkbox .form_field {
         display: flex;
         flex-direction: row;
         label {
