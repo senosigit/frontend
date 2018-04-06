@@ -67,7 +67,6 @@
     }
 
     &.content__main-column--media,
-    &.content__main-column--gallery,
     &.content__main-column--wide {
         @include mq(desktop) {
             max-width: none;
@@ -170,7 +169,8 @@
     }
 }
 
-.content__labels--not-immersive {
+.content__labels--not-immersive,
+.content__labels--gallery {
     @include mq($from: phablet, $until: tablet) {
         margin-left: $gs-gutter;
     }
@@ -205,12 +205,7 @@
     }
 }
 
-.content__section-label--gallery {
-    margin-right: $gs-gutter / 4;
-}
-
 .content__series-label {
-    display: inline;
     font-family: $f-serif-headline;
     font-size: 16px;
     line-height: 19px;
@@ -219,14 +214,14 @@
         font-weight: 800;
     }
 
+    @include mq(tablet) {
+        display: inline;
+    }
+
     @include mq(leftCol) {
         @include fs-headline(2);
         display: block;
     }
-}
-
-.content__series-label--immersive-article {
-    font-weight: bold;
 }
 
 .content__series-label__link {
@@ -237,13 +232,6 @@
     .container__meta__title {
         font-size: 20px;
         line-height: 24px;
-    }
-
-    .content__series-label {
-        .content--interactive & {
-            font-size: 20px !important;
-            line-height: 24px !important;
-        }
     }
 }
 
@@ -964,7 +952,6 @@
 
 // This section below makes the meta align with the image on leftCol, and has the main media first on mobile.
 .content__head--article {
-
     @include mq($until: tablet) {
         display: flex;
         flex-direction: column;
@@ -1105,9 +1092,7 @@
         color: $garnett-neutral-1;
     }
     .u-underline {
-        text-decoration: none !important;
-        border-bottom: 1px solid $garnett-neutral-2;
-        transition: border-color .15s ease-out;
+        border-color: $garnett-neutral-2;
         &:hover,
         &:focus {
             border-color: mix($garnett-neutral-1, $garnett-neutral-1, 50%);
