@@ -6,9 +6,7 @@ import { init as initCampaign } from './campaigns';
 
 const makeCampaign = (anchorNode: HTMLElement): void => {
     const campaign = template(campaignTemplate, { data: initCampaign() });
-    const campaignDiv = `<figure class="element element-campaign">${
-        campaign
-    }</figure>`;
+    const campaignDiv = `<figure class="element element-campaign">${ campaign }</figure>`;
 
     fastdom.write(() => {
         anchorNode.insertAdjacentHTML('afterend', campaignDiv);
@@ -16,8 +14,7 @@ const makeCampaign = (anchorNode: HTMLElement): void => {
 };
 
 export const renderCampaign = () => {
-    const fourthParagraph = document.querySelectorAll(
-        '.content__article-body p'
-    )[4];
+    const fourthParagraph = document.querySelectorAll('.content__article-body p')[4];
+
     if (fourthParagraph) makeCampaign(fourthParagraph);
 };

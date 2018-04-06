@@ -1,13 +1,12 @@
 package controllers
 
 import conf.Configuration
-import contentapi.ContentApiClient
 import common._
 import model._
 import play.api.libs.ws.{WSClient, WSResponse}
 import play.api.mvc._
-import play.api._
 import play.api.libs.json._
+import play.api.libs.json.Json
 
 import scala.concurrent._
 
@@ -18,25 +17,40 @@ class FormstackController(
   extends BaseController with ImplicitControllerExecutionContext with Logging {
 
   val root = "https://www.formstack.com/api/v2/"
-  val id = "2994970" //extract this from the formData/
   val endpoint = "/submission.json"
-  val token = Configuration.formstack.oAuthToken
+  val token = "2d174e190adf4634bec99642b770b2c5" // Configuration.formstack.oAuthToken
 
   def formSubmit() = Action.async { implicit request: Request[AnyContent] =>
-    println("---hits this function---")
-    println(request.body)
-    request.body.asJson.fold(Future.successful(BadRequest("Unable to process")))
-    { json =>
-      println(json)
-      sendToFormstack(json).flatMap { res =>
-        if(res.status == 201) Future.successful(Ok("Thanks for submitting your story"))
-        else { Future.failed( new Throwable("Sorry your story couldn't be sent"))}
+    val body: AnyContent = request.body
+    val formId: String = body.asFormUrlEncoded.map(formData => formData("id")).get.last
+
+    println("formId", formId)
+
+    val jsonBody: Option[JsValue] = body.asFormUrlEncoded.map( formData => {
+      val formattedData = formData.keys.foldLeft(Map.empty[String, String])((map, key) => {
+        val formValue: Option[String] = formData get key map(_.last)
+        map + (key -> formValue.get)
+      })
+      Json.toJson(formattedData)
+    })
+
+    jsonBody.map { json =>
+      sendToFormstack(json, formId).flatMap { res =>
+        println(res)
+        if(res.status == 201) {
+          Future.successful(Ok("Thanks for submitting your story"))
+//          Ok(views.html.formstack.formstackForm(page, formstackForm))
+        }
+        else {
+          Future.failed( new Throwable("Sorry your story couldn't be sent"))}
       }
+    }.getOrElse{
+      Future.failed( new Throwable("Sorry no data was sent"))
     }
   }
 
-  def sendToFormstack(data: JsValue): Future[WSResponse] = {
-    wsClient.url(root + id + endpoint).withHttpHeaders(
+  def sendToFormstack(data: JsValue, formId: String): Future[WSResponse] = {
+    wsClient.url(root + formId + endpoint).withHttpHeaders(
       "Authorization" -> s"Bearer $token",
       "Accept" -> "application/json",
       "Content-Type" -> "application/json"
