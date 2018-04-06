@@ -12,5 +12,6 @@ export const init = () => {
         title: campaignToShow.fields.callout,
         description: campaignToShow.fields.description,
         formFields: campaignToShow.fields.formFields,
+        formId: campaignToShow.fields.formId,
     };
 };

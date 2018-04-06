@@ -28,7 +28,10 @@
         </button>
     </summary>
 
+
     <form action="/formstack-campaign/submit" method="post" class="campaign--snippet__body">
+
+        <input name="formId" type="hidden" value="<%=data.formId%>" />
 
         <% data.formFields.forEach(function(field) { %>
 
@@ -41,48 +44,48 @@
                 </label>
 
                 <% if(field.type === "textarea") { %>
-                    <textarea name="field_<%=field.id%>"
-                        <% if (field.required === "1") { %>
-                        required="true" <% } %>
-                        />
-                    </textarea>
+                <textarea name="field_<%=field.id%>"
+                <% if (field.required === "1") { %>
+                required="true" <% } %>
+                />
+                </textarea>
 
                 <% } else if(field.type === "radio" || field.type === "checkbox") { %>
-                    <% field.options.forEach(function(option){ %>
-                        <input type="<%=field.type%>"
-                               value="<%=option.value%>"
-                               id="<%=option.label%>"
-                               name="field_<%=field.id%>"
-                                <% if (field.required === "1") { %>
-                                required="true"
-                                <% } %>
-                               />
-                        <label for="<%=option.label%>">
-                            <%=option.value%>
-                        </label>
-                    <% }) %>
+                <% field.options.forEach(function(option){ %>
+                <input type="<%=field.type%>"
+                       value="<%=option.value%>"
+                       id="<%=option.label%>"
+                       name="field_<%=field.id%>"
+                <% if (field.required === "1") { %>
+                required="true"
+                <% } %>
+                />
+                <label for="<%=option.label%>">
+                    <%=option.value%>
+                </label>
+                <% }) %>
 
                 <% } else if(field.type === "select") { %>
-                    <select name="field_<%=field.id%>"
-                        <% if (field.required === "1") { %>
-                            required="true"
-                        <% } %>
-                    >
-                        <% field.options.forEach(function(option){ %>
-                        <option value="<%=option.value%>">
-                            <%=option.value%>
-                        </option>
-                        <% }) %>
+                <select name="field_<%=field.id%>"
+                <% if (field.required === "1") { %>
+                required="true"
+                <% } %>
+                >
+                <% field.options.forEach(function(option){ %>
+                <option value="<%=option.value%>">
+                    <%=option.value%>
+                </option>
+                <% }) %>
 
-                    </select>
+                </select>
 
                 <% } else { %>
-                    <input name="field_<%=field.id%>"
+                <input name="field_<%=field.id%>"
                        type="<%=field.type%>"
-                        <% if (field.required === "1") { %>
-                            required="true"
-                        <% } %>
-                    />
+                <% if (field.required === "1") { %>
+                required="true"
+                <% } %>
+                />
                 <% } %>
             </div>
         </div>
@@ -94,11 +97,12 @@
                 <button class="button button--rounded" type="submit">Share with the Guardian</button>
             </div>
             <div class="t_and_c">
-                <a href="">Terms and conditions</a>
+                <a href="https://www.theguardian.com/help/terms-of-service">Terms and conditions</a>
             </div>
         </div>
 
     </form>
+
 
 </details>
 

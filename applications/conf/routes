@@ -115,5 +115,5 @@ GET        /$leftSide<[^+]+>+*rightSide                                         
 # Google site verification
 GET        /google$account<[\w\d-]*>.html                                       controllers.SiteVerificationController.googleSiteVerify(account)
 
-# Formstack form submission       
-POST      /formstack-campaign/submit                                            controllers.FormstackController.formSubmit()
+# Formstack form submission
+POST      /formstack-campaign/submit                                            controllers.CampaignsController.formSubmit()

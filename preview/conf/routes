@@ -203,5 +203,5 @@ GET        /favicon.ico                                                         
 # Any "item" from the Content API
 GET        /*path                                                                              controllers.ItemController.render(path)
 
-# Formstack form submission       
-POST      /formstack-campaign/submit                                                           controllers.FormstackController.formSubmit()
+# Formstack form submission
+POST      /formstack-campaign/submit                                                           controllers.CampaignsController.formSubmit()

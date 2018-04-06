@@ -10,24 +10,24 @@ import play.api.libs.json.Json
 
 import scala.concurrent._
 
-class FormstackController(
+class CampaignsController(
   val controllerComponents: ControllerComponents,
   val wsClient: WSClient,
 )(implicit context: ApplicationContext)
   extends BaseController with ImplicitControllerExecutionContext with Logging {
 
-  val root = "https://www.formstack.com/api/v2/"
+  val root = Configuration.formstack.url + "/form/"
   val endpoint = "/submission.json"
-  val token = "2d174e190adf4634bec99642b770b2c5" // Configuration.formstack.oAuthToken
+  val token = Configuration.formstack.editorial.oAuthToken
 
   def formSubmit() = Action.async { implicit request: Request[AnyContent] =>
-    val body: AnyContent = request.body
-    val formId: String = body.asFormUrlEncoded.map(formData => formData("id")).get.last
 
-    println("formId", formId)
+    val formId: String = request.body.asFormUrlEncoded.map(formData => formData("formId")).get.last
+    val pageUrl: String = request.headers("referer")
 
-    val jsonBody: Option[JsValue] = body.asFormUrlEncoded.map( formData => {
-      val formattedData = formData.keys.foldLeft(Map.empty[String, String])((map, key) => {
+    val jsonBody: Option[JsValue] = request.body.asFormUrlEncoded.map( formData => {
+      val keysMinusFormId = formData.keys.filter(_ != "formId")
+      val formattedData = keysMinusFormId.foldLeft(Map.empty[String, String])((map, key) => {
         val formValue: Option[String] = formData get key map(_.last)
         map + (key -> formValue.get)
       })
@@ -38,12 +38,12 @@ class FormstackController(
       sendToFormstack(json, formId).flatMap { res =>
         println(res)
         if(res.status == 201) {
-          Future.successful(Ok("Thanks for submitting your story"))
-//          Ok(views.html.formstack.formstackForm(page, formstackForm))
+          Future.successful(Redirect(pageUrl)) // why are parameters illegal?
         }
         else {
           Future.failed( new Throwable("Sorry your story couldn't be sent"))}
       }
+
     }.getOrElse{
       Future.failed( new Throwable("Sorry no data was sent"))
     }
